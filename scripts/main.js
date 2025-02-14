@@ -24,3 +24,25 @@ function displayPrayerTimes(timings) {
     <p><strong>Isha:</strong> ${timings.Isha}</p>
     `;
 }
+
+// Fetch Quran verse from Quran API
+fetch('https://quranapi.pages.dev/api/2/153.json') // Fetching data from the API
+    .then(response => response.json()) // Converting the response to JSON
+    .then(data => { // Extracts the Quran verse from the API 
+        console.log(data); // Logging the quran data from the API
+
+        // Display the Quran verse on the webpage
+        displayQuranVerse(data); // Calling the function to display the quran verse on the webpage
+    })
+    .catch(error => console.error('Error fetching Quran verse:', error)); // Catch any errors and log them to the console
+
+// Function to display the Quran verse on the webpage
+function displayQuranVerse(data) {
+    const quranContainer = document.getElementById('quran-verse'); // document is the webpage, I'm using getElementbyId to get the element with the id of 'quran-verse'
+    quranContainer.innerHTML = `
+    <h2>Quran Verse:</h2>
+    <p><strong>${data.surahName} (${data.surahNo}:${data.ayahNo})</strong></p> 
+    <p>${data.arabic1}</p>
+    <p><em>${data.english}</em></p>
+    `;
+}
