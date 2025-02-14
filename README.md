@@ -54,3 +54,5 @@ Acceptance Criteria: Users receive on-screen reminders for scheduled tasks.
 
 Acceptance Criteria: The app provides charts and graphs showing completed tasks, habits, and streaks.
 
+# Kanban Link:
+https://trello.com/b/imn6a4sw/project-1-productivity-app
