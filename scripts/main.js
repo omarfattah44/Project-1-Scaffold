@@ -4,9 +4,48 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
     .then(data => { // Extracts the prayer times from the API
         const timings = data.data.timings; // setting a constant variable to the data of the prayer times
         console.log(timings); // Check the prayer times in the console
+
+        // Finding the next prayer time
+        const currentTime = new Date(); // setting a constant variable to get the current local time
+        console.log("CurrentTime:", currentTime);
+        const prayerTimesArray = [ // creating an array of the prayer times so I can loop through them when finding the next prayer time
+            { name: 'Fajr', time: timings.Fajr },
+            { name: 'Dhuhr', time: timings.Dhuhr },
+            { name: 'Asr', time: timings.Asr },
+            { name: 'Maghrib', time: timings.Maghrib },
+            { name: 'Isha', time: timings.Isha }
+        ];
+        
+        // Finding the next prayer time
+        const nextPrayer = getNextPrayerTime(prayerTimesArray, currentTime); // Created a function to find the next prayer time
+        console.log("Next Prayer:", nextPrayer); // Check the next prayer time in the console
+
+        if (nextPrayer) {
+            startCountdown(nextPrayer.time, nextPrayer.name); // Created a function to start the countdown to the next prayer time
+        }
+        
+        // Function to get the next prayer time
+        function getNextPrayerTime(prayerTimes, currentTime) { // Created a function to find the next prayer time
+            for (let i = 0; i < prayerTimes.length; i++) { // Doing a loop to go through the prayer times
+                const prayerTime = convertTo24Hour(prayerTimes[i].time); // Convert to 24-hour format
+                if (currentTime < prayerTime) { // Check if the current time is less than the prayer time
+                    return prayerTimes[i]; // Return the first upcoming prayer
+                }
+            }
+            return null; // No more prayers left today
+        }
+        // Function to convert the prayer time to 24 hour format
+        function convertTo24Hour(time) { // Created a function to convert the prayer time to 24-hour format
+            const [hours, minutes] = time.split(":").map(Number); // Split the time into hours and minutes// split(":") is splitting the time at the colon, map(Number) is converting the string to a number
+            let date = new Date(); // setting a variable to get the current date
+            date.setHours(hours, minutes, 0, 0); // setting the hours and minutes of the date
+            return date; // Return the date
+        }
+        
+        // For the hijri date within the prayer times container
         const hijriDate = data.data.date.hijri; // setting a constant variable to the data of the hijri date
         console.log(hijriDate); // Check the hijri date in the console
-        
+
         displayIslamicDate(hijriDate); // Calling the function to display the islamic date on the webpage
 
 
