@@ -5,10 +5,10 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
         const timings = data.data.timings; // setting a constant variable to the data of the prayer times
         console.log(timings); // Check the prayer times in the console
 
-        // Finding the next prayer time
+         // creating an array of the prayer times so I can loop through them when finding the next prayer time
         const currentTime = new Date(); // setting a constant variable to get the current local time
         console.log("CurrentTime:", currentTime);
-        const prayerTimesArray = [ // creating an array of the prayer times so I can loop through them when finding the next prayer time
+        const prayerTimesArray = [ 
             { name: 'Fajr', time: timings.Fajr },
             { name: 'Dhuhr', time: timings.Dhuhr },
             { name: 'Asr', time: timings.Asr },
@@ -16,17 +16,17 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
             { name: 'Isha', time: timings.Isha }
         ];
         
-        // Finding the next prayer time
-        const nextPrayer = getNextPrayerTime(prayerTimesArray, currentTime); // Created a function to find the next prayer time
+        // Created a function to find the next prayer time
+        const nextPrayer = getNextPrayerTime(prayerTimesArray, currentTime); 
         console.log("Next Prayer:", nextPrayer); // Check the next prayer time in the console
 
-        if (nextPrayer) {
+        if (nextPrayer) { // using an if statement to check if there is a next prayer time
             startCountdown(nextPrayer.time, nextPrayer.name); // Created a function to start the countdown to the next prayer time
         }
         
         // Function to get the next prayer time
         function getNextPrayerTime(prayerTimes, currentTime) { // Created a function to find the next prayer time
-            for (let i = 0; i < prayerTimes.length; i++) { // Doing a loop to go through the prayer times
+            for (let i = 0; i < prayerTimes.length; i++) { // Doing a loop to go through the prayer times, ++ is incrementing the loop by 1 so it goes through each prayer time
                 const prayerTime = convertTo24Hour(prayerTimes[i].time); // Convert to 24-hour format
                 if (currentTime < prayerTime) { // Check if the current time is less than the prayer time
                     return prayerTimes[i]; // Return the first upcoming prayer
@@ -34,6 +34,7 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
             }
             return null; // No more prayers left today
         }
+        
         // Function to convert the prayer time to 24 hour format
         function convertTo24Hour(time) { // Created a function to convert the prayer time to 24-hour format
             const [hours, minutes] = time.split(":").map(Number); // Split the time into hours and minutes// split(":") is splitting the time at the colon, map(Number) is converting the string to a number
