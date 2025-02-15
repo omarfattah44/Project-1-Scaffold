@@ -26,23 +26,70 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
         
         // Function to get the next prayer time
         function getNextPrayerTime(prayerTimes, currentTime) { // Created a function to find the next prayer time
+            console.log("Checking next prayer time... Current time:", currentTime);
+
             for (let i = 0; i < prayerTimes.length; i++) { // Doing a loop to go through the prayer times, ++ is incrementing the loop by 1 so it goes through each prayer time
                 const prayerTime = convertTo24Hour(prayerTimes[i].time); // Convert to 24-hour format
                 if (currentTime < prayerTime) { // Check if the current time is less than the prayer time
+                    console.log("Next prayer time found:", prayerTimes[i].name, "at", prayerTimes[i].time);
                     return prayerTimes[i]; // Return the first upcoming prayer
                 }
             }
+
+            // If no more prayers left for today display this message
+            console.warn("No more prayers left for today");
+            const countdownContainer = document.getElementById('prayer-times'); // creating a countdown container to display the countdown on the webpage
+            countdownContainer.innerHTML = `<p><strong>No more prayers left for today</strong></p>`; // Display the message on the webpage
+            
             return null; // No more prayers left today
         }
-        
+
         // Function to convert the prayer time to 24 hour format
         function convertTo24Hour(time) { // Created a function to convert the prayer time to 24-hour format
-            const [hours, minutes] = time.split(":").map(Number); // Split the time into hours and minutes// split(":") is splitting the time at the colon, map(Number) is converting the string to a number
+            const [timePart, modifier] = time.split(' '); // Split the time into time part and AM/PM part
+            let [hours, minutes] = timePart.split(":").map(Number); // Split the time part into hours and minutes
+
+            if (modifier === 'PM' && hours !== 12) {
+                hours += 12;
+            } else if (modifier === 'AM' && hours === 12) {
+                hours = 0;
+            }
+
             let date = new Date(); // setting a variable to get the current date
             date.setHours(hours, minutes, 0, 0); // setting the hours and minutes of the date
             return date; // Return the date
         }
         
+        // Function to create the countdown to the next prayer time
+        function startCountdown(nextPrayerTime, prayerName) { // Created a function to start the countdown to the next prayer time
+            const countdownContainer = document.getElementById('prayer-times'); // creating a countdown container to display the countdown on the webpage
+            const countdownElement = document.createElement('p'); // creating a paragraph element to display the countdown
+            countdownElement.id = 'countdown'; // setting the id of the countdown element to 'countdown'
+            countdownContainer.appendChild(countdownElement); // appendCHild is adding the countdown element to the countdown container
+
+        // function to update the countdown every second
+        function updateCountdown() { // Created a function to update the countdown every second
+            const now = new Date(); // setting a variable to get the current date
+            const prayerTime = convertTo24Hour(nextPrayerTime); // Convert to 24-hour format
+            const timeDifference = prayerTime - now; // Calculate the time difference between the prayer time and the current time
+
+            if (timeDifference <= 0) { // Check if the time difference is less than or equal to 0
+                countdownElement.innerHTML = `<strong>${prayerName} time is now!</strong>`; // Display the prayer time is now
+                clearInterval(countdownInterval); // Clear the countdown interval
+                return;
+            }
+
+            const hours = Math.floor(timeDifference / (1000 * 60 * 60)); // Calculate the hours
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)); // Calculate the minutes
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000); // Calculate the seconds
+
+            countdownElement.innerHTML = `<strong>${prayerName} is in:</strong> ${hours}h ${minutes}m ${seconds}s`; // Display the countdown
+        } 
+        
+        updateCountdown(); // Call the function to update the countdown
+        const countdownInterval = setInterval(updateCountdown, 1000); // Set the interval to update the countdown every second
+    }
+    
         // For the hijri date within the prayer times container
         const hijriDate = data.data.date.hijri; // setting a constant variable to the data of the hijri date
         console.log(hijriDate); // Check the hijri date in the console
