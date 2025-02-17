@@ -54,12 +54,12 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
     function displayPrayerTimes(timings) {
         const prayerTimesContainer = document.getElementById('prayer-times'); // document is the webpage, I'm using getElementById to get the element with the id of 'prayer-times'
         prayerTimesContainer.innerHTML = ` 
-        <h2>Prayer Times</h2>
-        <p><strong>Fajr:</strong> ${timings.Fajr}</p> 
-        <p><strong>Dhuhr:</strong> ${timings.Dhuhr}</p>
-        <p><strong>Asr:</strong> ${timings.Asr}</p>
-        <p><strong>Maghrib:</strong> ${timings.Maghrib}</p>
-        <p><strong>Isha:</strong> ${timings.Isha}</p>
+        <h2>Prayer Times:</h2>
+        <p><strong>Fajr: ${timings.Fajr}</strong> </p> 
+        <p><strong>Dhuhr: ${timings.Dhuhr}</strong></p>
+        <p><strong>Asr: ${timings.Asr}</strong></p>
+        <p><strong>Maghrib: ${timings.Maghrib}</strong></p>
+        <p><strong>Isha: ${timings.Isha}</strong></p>
         `;
     }
         // Function to get the next prayer time

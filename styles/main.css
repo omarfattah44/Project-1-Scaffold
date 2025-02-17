@@ -17,26 +17,23 @@ body {
 }
 
 #prayer-times-container {
-    background-color: rgba(1, 1, 54, 0.959);
+    background: linear-gradient(to right, #021c4d, #2a5298);
     padding: 20px;
     border-radius: 10px;
     color: white; /* Added color property to ensure text is visible */
-.fajr { color: yellow; }
-.dhuhr { color: green; }
-.asr { color: orange; }
-.maghrib { color: red; }
-.isha { color: purple; }
 }
 
-#islamic-date, #countdown-container {
+#islamic-date {
     font-size: 1.2em;
+    font-weight: bold;
     color: white;
+    text-shadow: 1px 1px 2px black;
 }
 
 #countdown-container {
     font-size: 1.5em; /* Increase the font size */
     color: white;
-    background-color: rgba(0, 0, 0, 0.7); /* Add a background color */
+    background-color: rgba(2, 6, 63, 0.856); /* Add a background color */
     padding: 20px; /* Add padding */
     border-radius: 10px; /* Add rounded corners */
     margin: 20px auto; /* Center the container */
@@ -49,5 +46,5 @@ body {
     font-size: 2em; /* Increase the font size */
     font-weight: bold; /* Make the text bold */
     color: white; /* Change the text color back to yellow for visibility */
-    text-shadow: 1px 1px 2px black; /* Add text shadow for better readability */
+   
 }
