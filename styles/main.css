@@ -1,13 +1,53 @@
 body {
-    background-color: antiquewhite;
-}
-/* Style for the Prayer times container*/
-#prayer-times {
-    background-color: #1f2937; /* Dark blue */
-    padding: 20px;
-    border-radius: 10px; /* Rounded corners */
-    color: white; /* White text */
-    margin: 20px 0; /* Top and bottom margin */
+    background-color: rgba(247, 217, 179, 0.603);
     font-family: Arial, Helvetica, sans-serif;
-    text-align:center; /* Center text */
+    text-align: center;
+    padding: 20px;
+}
+
+#quran-verse {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+#prayer-times-container {
+    background-color: rgba(1, 1, 54, 0.959);
+    padding: 20px;
+    border-radius: 10px;
+    color: white; /* Added color property to ensure text is visible */
+.fajr { color: yellow; }
+.dhuhr { color: green; }
+.asr { color: orange; }
+.maghrib { color: red; }
+.isha { color: purple; }
+}
+
+#islamic-date, #countdown-container {
+    font-size: 1.2em;
+    color: white;
+}
+
+#countdown-container {
+    font-size: 1.5em; /* Increase the font size */
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Add a background color */
+    padding: 20px; /* Add padding */
+    border-radius: 10px; /* Add rounded corners */
+    margin: 20px auto; /* Center the container */
+    width: 80%; /* Set the width */
+    max-width: 600px; /* Set the maximum width */
+    text-align: center; /* Center the text */
+}
+
+#countdown {
+    font-size: 2em; /* Increase the font size */
+    font-weight: bold; /* Make the text bold */
+    color: white; /* Change the text color back to yellow for visibility */
+    text-shadow: 1px 1px 2px black; /* Add text shadow for better readability */
 }
