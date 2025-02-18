@@ -34,18 +34,19 @@ body {
 
 /*  Welcome Message */
 #Welcome-Message {
-    top: 200px;
+    top: 100px; /* Adjust to fit the header */
     font-size: 2.5em;
     font-weight: bold;
     color: #1e3c72;
     position: relative;
-    animation: fadeIn 1s ease;
+    animation: fadeIn 5s ease;
+   
 }
 
 /*  Prayer Times Widget - Horizontal Layout */
 #prayer-times-container {
     position: absolute;
-    top: 600px; /* Positioned below the Quran header */
+    top: 500px; /* Positioned below the Quran header */
     left: 20px;
     height: 150px; /* Adjust height for better spacing */
     background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d); /* Gradient effect */
@@ -114,4 +115,84 @@ body {
     #prayer-times {
         flex-direction: column; /* Stack prayer times */
     }
+}
+
+/* To do lists */
+/* To-Do List Section */
+#todo-container {
+    position: relative;
+    top: 400px; /* Positioned below the prayer times */
+    background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Gradient from top to bottom */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    width: 80%;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Individual To-Do List Categories */
+.todo-category {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+/* Input Field */
+.todo-category input {
+    width: 70%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+
+/* Buttons */
+.todo-category button {
+    padding: 8px 12px;
+    border: none;
+    background: #ff9800;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.todo-category button:hover {
+    background: #e68900;
+}
+
+/* Task List */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Task List Items */
+ul li {
+    background: rgba(255, 255, 255, 0.2);
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Completed Task (Strikethrough Effect) */
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* Delete Button */
+.delete-btn {
+    background: red;
+    border: none;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
 }
