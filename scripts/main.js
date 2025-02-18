@@ -204,19 +204,21 @@ function addTask(category) {
     taskInput.value = ""; // Clear the input field
 
      saveTasks(category); // Save the tasks to local storage so if refresh it stays.
+
+     console.log(`Task "${taskText}" added to ${category}`); // Log the task added to the console
 }
 // Function to toggle task completion status
 
 function toggleComplete(taskElement) {
     taskElement.classList.toggle("completed"); // Toggle the "completed" class on the task element
+    const category = taskElement.parentElement.parentElement.id.replace('-list', ''); // Get the category from the parent element's id
+    saveTasks(category); // Save the tasks to local storage
 }
 
 // Function to delete a task from the list and update Local Storage
 
 function deleteTask(taskElement, category) {
-    const taskList = document.getElementById(`${category}-list`); // Get the task list using the get ElementById method then -list to get the specific list
-    taskList.removeChild(taskElement.parentElement); // Remove the task element from the task list
-    
+    taskElement.parentElement.remove(); // Remove the task element from the task list
     saveTasks(category); // Save the tasks to local storage
 }
 
@@ -224,25 +226,22 @@ function deleteTask(taskElement, category) {
 
 function saveTasks(category) {
     const taskList = document.getElementById(`${category}-list`); // Get the task list using the get ElementById method then -list to get the specific list
-    const tasks = []; // Initialize an empty array to store task text
-
-    taskList.querySelectorAll("li span").forEach((taskSpan) => { // Loop through each task item in the list
-        tasks.push(taskSpan.textContent); // Add the task text to the tasks array
-    });
+    const tasks = Array.from(taskList.children).map(item => item.firstChild.textContent.trim());  // Convert the task list to an array of task text
 
     localStorage.setItem(category, JSON.stringify(tasks)); // Save the tasks array to local storage with page reloads and browser sessions
+    console.log(`Tasks saved for ${category}`);
 }
 
 // Function to load tasks from local storage
 
 function loadTasks() {
-    const categories = ["Islam", "Fitness", "Work/School", "Home/Misc", "Masjid"]; // List of task categories
+    const categories = ["islam", "fitness", "work", "home", "masjid"]; // List of task categories
 
-    categories.forEach((category) => { // Loop through each category
+    categories.forEach(category => { // Loop through each category
         const tasksList = document.getElementById(`${category}-list`); // Get the task list using the get ElementById method then -list to get the specific list
         const savedTasks = JSON.parse(localStorage.getItem(category)) || []; // Get saved tasks from local storage or an empty array
 
-        savedTasks.forEach((taskText) => { // Loop through each saved task
+        savedTasks.forEach(taskText => { // Loop through each saved task
             const taskItem = document.createElement("li"); // Create a new list item element
             taskItem.innerHTML = `
             <span onclick="toggleComplete(this)">${taskText}</span>
@@ -251,30 +250,32 @@ function loadTasks() {
 
             tasksList.appendChild(taskItem); // Append the task item to the task list
         });
-
     });
+    console.log("Tasks loaded from local storage"); // Log the tasks loaded from local storage to the console
 }
 
-// Load tasks when the page loads
-document.addEventListener("DOMContentLoaded", loadTasks); // this ensures the task lists are populates once the page is ready.
+// Load tasks when the page loads and add event listeners for "Enter" key press and button clicks
+document.addEventListener("DOMContentLoaded", () => {
+    loadTasks(); // Load tasks from local storage
 
-// Add event listener to handle "Enter" key press
+    const categories = ["islam", "fitness", "work", "home", "masjid"]; // List of task categories
 
-    document.addEventListener("DOMcontentLoaded", () => {
-        const categories = ["Islam", "Fitness", "Work/School", "Home/Misc", "Masjid"]; // List of task categories
+    categories.forEach((category) => { // Loop through each category
+        const inputField = document.getElementById(`${category}-task`); // Get the task input field using the get ElementById method then -task to get the specific task
+        const addButton = document.getElementById(`${category}-add-btn`); // Get the add button using the get ElementById method then -add-btn to get the specific button
 
-        categories.forEach((category) => { // Loop through each category
-            const inputField = document.getElementById(`${category}-task`); // Get the task input field using the get ElementById method then -task to get the specific task
-            const addButton = document.getElementById(`${category}-add-btn`); // Get the add button using the get ElementById method then -add-btn to get the specific button
-            inputField.addEventListener("keypress", function(event) { // Add an event listener for keypress events
-                if (event.key === "Enter") { // If the key pressed is "Enter"
+        if (inputField) { // If the input field exists
+            inputField.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // Prevent the default action of the Enter key
                     addTask(category); // Call the addTask function
                 }
             });
-            if (addButton) {
-                addButton.addEventListener("click", function() { // Add an event listener for click events
-                    addTask(category);
-                });
-            }
-        });
+        }
+        if (addButton) { 
+            addButton.addEventListener("click", function() { // Add an event listener for click events
+                addTask(category);
+            });
+        }
     });
+});
