@@ -1,50 +1,117 @@
+/*  Quran Verse Header - Fixed at the Top */
+#quran-verse {
+    position: absolute; /* Stays at the top */
+    top: -5px; /* Adjust to fit the header */
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    width: 100%;
+    height: fit-content; /* Adjust height for a thinner header */
+    background: linear-gradient(to bottom, #1e3c72, #2a5298, #1e3c72); /* Middle gradient */
+    padding: 15px 0;
+    color: white;
+    text-align: center;
+    text-shadow: 1px 1px 2px black;
+    font-size: .75em;
+    font-weight: bold;
+    z-index: 1000; /* Ensures it stays above everything */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0px; /* Spacing between elements */
+}
+
+/*  Body - Prevent Overlapping */
 body {
     background-color: rgba(247, 217, 179, 0.603);
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    padding: 20px;
+    padding-top: 80px; /* Prevents content from being hidden under the fixed header */
 }
 
-#quran-verse {
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
-    text-align: center;
-}
-
-#prayer-times-container {
-    background: linear-gradient(to right, #021c4d, #2a5298);
-    padding: 20px;
-    border-radius: 10px;
-    color: white; /* Added color property to ensure text is visible */
-}
-
-#islamic-date {
-    font-size: 1.2em;
+/*  Welcome Message */
+#Welcome-Message {
+    top: 200px;
+    font-size: 1.8em;
     font-weight: bold;
+    color: #1e3c72;
+    position: relative;
+    animation: fadeIn 1s ease;
+}
+
+/*  Prayer Times Widget - Horizontal Layout */
+#prayer-times-container {
+    position: absolute;
+    top: 600px; /* Positioned below the Quran header */
+    left: 20px;
+    height: 150px; /* Adjust height for better spacing */
+    background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d); /* Gradient effect */
+    padding: 15px;
+    border-radius: 15px;
     color: white;
     text-shadow: 1px 1px 2px black;
+    width: 80%; /* Adjust width for better spacing */
+    max-width: 600px;
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap on smaller screens */
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px; /* Spacing between elements */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-#countdown-container {
-    font-size: 1.5em; /* Increase the font size */
+/*  Hijri Date */
+#islamic-date {
+    font-size: 1em;
+    font-weight: bold;
     color: white;
-    background-color: rgba(2, 6, 63, 0.856); /* Add a background color */
-    padding: 20px; /* Add padding */
-    border-radius: 10px; /* Add rounded corners */
-    margin: 20px auto; /* Center the container */
-    width: 80%; /* Set the width */
-    max-width: 600px; /* Set the maximum width */
-    text-align: center; /* Center the text */
+    text-align: center;
+    white-space: nowrap;
 }
 
-#countdown {
-    font-size: 2em; /* Increase the font size */
-    font-weight: bold; /* Make the text bold */
-    color: white; /* Change the text color back to yellow for visibility */
-   
+/*  Countdown Timer */
+#countdown-container {
+    font-size: 1.2em;
+    color: white;
+    background-color: rgba(2, 6, 63, 0.856);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/*  Prayer Times - Now in a Horizontal Layout */
+#prayer-times {
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    justify-content: space-between; /* Even spacing */
+    gap: 10px;
+    flex-wrap: wrap; /* Allows wrapping if needed */
+    width: 100%;
+}
+
+/*  Individual Prayer Times */
+.prayer-time {
+    font-size: 1em;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    white-space: nowrap;
+    flex: 1; /* Makes each prayer time evenly spaced */
+}
+
+/*  Ensure Responsiveness */
+@media (max-width: 768px) {
+    #prayer-times-container {
+        flex-direction: column; /* Stack elements vertically on small screens */
+        align-items: center;
+    }
+
+    #prayer-times {
+        flex-direction: column; /* Stack prayer times */
+    }
 }

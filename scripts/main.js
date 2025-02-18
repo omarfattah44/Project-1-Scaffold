@@ -37,7 +37,7 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
         startCountdown(nextPrayer.time, nextPrayer.name); // Created a function to start the countdown to the next prayer time
     }
 })
-    .catch(error => console.error('Error fetching prayertimes:', error)); // Catch any errors and log them to the console
+.catch(error => console.error('Error fetching prayertimes:', error)); // Catch any errors and log them to the console
     
     // Function to display the Islamic date on the webpage
     
@@ -51,29 +51,35 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
 
     // Function to display the prayer times on the webpage
 
-    function displayPrayerTimes(timings) {
-        const prayerTimesContainer = document.getElementById('prayer-times'); // document is the webpage, I'm using getElementById to get the element with the id of 'prayer-times'
-        prayerTimesContainer.innerHTML = ` 
-        <h2>Prayer Times:</h2>
-        <p><strong>Fajr: ${timings.Fajr}</strong> </p> 
-        <p><strong>Dhuhr: ${timings.Dhuhr}</strong></p>
-        <p><strong>Asr: ${timings.Asr}</strong></p>
-        <p><strong>Maghrib: ${timings.Maghrib}</strong></p>
-        <p><strong>Isha: ${timings.Isha}</strong></p>
-        `;
-    }
+// Function to display the prayer times on the webpage in a horizontal layout
+function displayPrayerTimes(timings) {
+    const prayerTimesContainer = document.getElementById('prayer-times');
+    prayerTimesContainer.innerHTML = ''; // Clear existing content
+
+    // List of prayer times to display
+    const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+
+    prayers.forEach(prayer => {
+        const prayerElement = document.createElement("div");
+        prayerElement.classList.add("prayer-time"); // Apply CSS class
+        prayerElement.innerHTML = `<strong>${prayer}:</strong> ${timings[prayer]}`;
+        prayerTimesContainer.appendChild(prayerElement);
+    });
+}
+
         // Function to get the next prayer time
 
         function getNextPrayerTime(prayerTimes, currentTime) { // Created a function to find the next prayer time
             for (let i = 0; i < prayerTimes.length; i++) { // Doing a loop to go through the prayer times, ++ is incrementing the loop by 1 so it goes through each prayer time
                 const prayerTime = convertTo24Hour(prayerTimes[i].time); // Convert to 24-hour format
                 if (currentTime < prayerTime) { // Check if the current time is less than the prayer time
+                    console.log("Next prayer time found:", prayerTimes[i].name, "at", prayerTimes[i].time);
                     return prayerTimes[i]; // Return the first upcoming prayer
                 }
             }
             return getFajrTimeForTomorrow(); // Return the Fajr time for tomorrow if no more prayers today.
         }
-
+    
         // Function to get the Fajr time for tomorrow
 
         function getFajrTimeForTomorrow() { 
@@ -99,52 +105,59 @@ fetch('https://api.aladhan.com/v1/timingsByCity?city=San%20Luis%20Obispo&country
             }
         
         // Function to create the countdown to the next prayer time
-        function startCountdown(nextPrayerTime, prayerName) { // Created a function to start the countdown to the next prayer time
-            const countdownContainer = document.getElementById('countdown-container'); // creating a countdown container to display the countdown on the webpage
-            let countdownElement = document.getElementById('countdown'); // creating a countdown element to display the countdown on the webpage
-
-            if (!countdownElement) {
-                countdownElement = document.createElement('p'); // Create a new p element
-                countdownElement.id = 'countdown'; // Set the id of the countdown element
-                countdownContainer.appendChild(countdownElement); // Append the countdown element to the countdown container
-            }
-
-            // Ensure nextPrayerTime is a Date object
-            if (typeof nextPrayerTime === 'string') {
-                nextPrayerTime = convertTo24Hour(nextPrayerTime);
-            }
-
-            // function to update the countdown every second
-
-            function updateCountdown() { // Created a function to update the countdown every second
-                const now = new Date(); // setting a variable to get the current date
-                const timeDifference = nextPrayerTime - now; // Calculate the time difference between the prayer time and the current time
-
-                if (timeDifference <= 0) { // Check if the time difference is less than or equal to 0
-                    countdownElement.innerHTML = `<strong>${prayerName} time is now!</strong>`; // Display the prayer time is now
-                    clearInterval(countdownInterval); // Clear the countdown interval
+        function startCountdown(nextPrayerTime, prayerName) {
+            const countdownContainer = document.getElementById('countdown-container'); // Ensure countdown displays in the right place
+            const countdownElement = document.getElementById('countdown'); // Get the countdown element
+            countdownElement.innerHTML = `<strong>Loading countdown...</strong>`; // Set initial text
+        
+            let countdownInterval; // Declare it here at the top before using it
+        
+            function updateCountdown() {
+                const now = new Date(); // Get the current time
+                const prayerTime = convertTo24Hour(nextPrayerTime); // Convert prayer time to 24-hour format
+                const timeDifference = prayerTime - now; // Calculate time left
+        
+                if (timeDifference <= 0) { // If it's time for prayer
+                    countdownElement.innerHTML = `<strong>${prayerName} time is now!</strong>`;
+                    clearInterval(countdownInterval); // Stop the countdown
                     return;
                 }
-
-                const hours = Math.floor(timeDifference / (1000 * 60 * 60)); // Calculate the hours
-                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)); // Calculate the minutes
-                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000); // Calculate the seconds
-
-                countdownElement.innerHTML = `<strong>${prayerName} is in:</strong> ${hours}h ${minutes}m ${seconds}s`; // Display the countdown
-            } 
-            
-            updateCountdown(); // Call the function to update the countdown
-            let countdownInterval = setInterval(updateCountdown, 1000); // Update the countdown every second
+        
+                // Calculate hours, minutes, and seconds left
+                const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        
+                // Update the countdown text
+                countdownElement.innerHTML = `<strong>${prayerName} is in:</strong> ${hours}h ${minutes}m ${seconds}s`;
+            }
+        
+            updateCountdown(); // Call it immediately to update the UI
+            countdownInterval = setInterval(updateCountdown, 1000); //  Initialize interval after function is defined
         }
+        
 
         // Function to convert the prayer time to 24 hour format
-        function convertTo24Hour(time) { // Created a function to convert the prayer time to 24-hour format
-            const [hours, minutes] = time.split(':').map(Number); // Split the time into hours and minutes
-            let date = new Date(); // setting a variable to get the current date
-            date.setHours(hours, minutes, 0, 0); // setting the hours and minutes of the date
-            return date; // Return the date
+        function convertTo24Hour(time) {
+            //  Check if time is valid and is a string
+            if (!time || (typeof time !== 'string' && !(time instanceof Date))) {
+                console.error("Invalid time format:", time);
+                return new Date(); // Return the current time to prevent further errors
+            }
+        
+            //  If time is already a Date object, return it directly
+            if (time instanceof Date) {
+                return time;
+            }
+        
+            //  Ensure time is a string before splitting
+            const [hours, minutes] = time.split(":").map(Number);
+            let date = new Date();
+            date.setHours(hours, minutes, 0, 0);
+            return date;
         }
-
+        
+        
 // Fetch Quran verse from Quran API
 
 fetch('https://quranapi.pages.dev/api/2/153.json') // Fetching data from the API
@@ -161,9 +174,8 @@ fetch('https://quranapi.pages.dev/api/2/153.json') // Fetching data from the API
 function displayQuranVerse(data) {
     const quranContainer = document.getElementById('quran-verse'); // document is the webpage, I'm using getElementbyId to get the element with the id of 'quran-verse'
     quranContainer.innerHTML = `
-    <h2>Quran Verse:</h2>
-    <p><strong>${data.surahName} (${data.surahNo}:${data.ayahNo})</strong></p> 
-    <p><strong>${data.arabic1}</strong></p>
-    <p><em>${data.english}</em></p>
+    <h2>Quran Verse: <strong>${data.surahName} (${data.surahNo}:${data.ayahNo})</strong></h2>
+    <h1><strong>${data.arabic1}</strong></h1>
+    <h2><em>${data.english}</em></h2>
     `;
 }
