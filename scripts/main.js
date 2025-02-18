@@ -184,6 +184,7 @@ function displayQuranVerse(data) {
 // To Do List Portion
 
 // Function to add a new task to a specific list
+
 function addTask(category) {
     const taskInput = document.getElementById(`${category}-task`); // Get the task input field using the get ElementById method then -task to get the specific task
     const taskText = taskInput.value.trim(); // Get the task text and remove leading/trailing spaces using the trim method
@@ -191,7 +192,7 @@ function addTask(category) {
     if (taskText === "") return; // this is so it doesnt add empty tasks
 
     const taskList = document.getElementById(`${category}-list`); // Get the task list using the get ElementById method then -list to get the specific list
-    const taskItem = createTaskItem(taskText, category); // Create a new list item element
+    const taskItem = createTaskItem(taskText, category, false); // Create a new list item element // New tasks are Not completed
 
     taskList.appendChild(taskItem); // Append the new task item to the task list
     taskInput.value = ""; // Clear the input field
@@ -202,16 +203,18 @@ function addTask(category) {
 }
 
 // Function to create a task item element
-function createTaskItem(taskText, category) {
+
+function createTaskItem(taskText, category, isCompleted = false) {
     const taskItem = document.createElement("li"); // Create a new list item element
     taskItem.innerHTML = `
-        <span onclick="toggleComplete(this)">${taskText}</span>
+        <span onclick="toggleComplete(this)" class="${isCompleted ? 'completed' : ''}">${taskText}</span>
         <button class="delete-btn" onclick="deleteTask(this, '${category}')">Delete</button>
     `;
     return taskItem;
 }
 
 // Function to toggle task completion status
+
 function toggleComplete(taskElement) {
     taskElement.classList.toggle("completed"); // Toggle the "completed" class on the task element
     const category = taskElement.parentElement.parentElement.id.replace('-list', ''); // Get the category from the parent element's id
@@ -219,21 +222,27 @@ function toggleComplete(taskElement) {
 }
 
 // Function to delete a task from the list and update Local Storage
+
 function deleteTask(taskElement, category) {
     taskElement.parentElement.remove(); // Remove the task element from the task list
     saveTasks(category); // Save the tasks to local storage
 }
 
 // Function to save tasks to local storage
+
 function saveTasks(category) {
     const taskList = document.getElementById(`${category}-list`); // Get the task list using the get ElementById method then -list to get the specific list
-    const tasks = Array.from(taskList.children).map(item => item.querySelector("span").textContent.trim());  // Convert the task list to an array of task text
+    const tasks = Array.from(taskList.children).map(item => ({
+        text: item.querySelector("span").textContent.trim(), // Corrected to extract text content for it refreshes and a task is completed
+        completed: item.querySelector("span").classList.contains("completed") // Corrected to extract text content 
+    })); // Convert the task list to an array of task text
 
     localStorage.setItem(category, JSON.stringify(tasks)); // Save the tasks array to local storage with page reloads and browser sessions
     console.log(`Tasks saved for ${category}`);
 }
 
 // Function to load tasks from local storage
+
 function loadTasks() {
     const categories = ["islam", "fitness", "work", "home", "masjid"]; // List of task categories
 
@@ -241,8 +250,8 @@ function loadTasks() {
         const tasksList = document.getElementById(`${category}-list`); // Get the task list using the get ElementById method then -list to get the specific list
         const savedTasks = JSON.parse(localStorage.getItem(category)) || []; // Get saved tasks from local storage or an empty array
 
-        savedTasks.forEach(taskText => { // Loop through each saved task
-            const taskItem = createTaskItem(taskText, category); // Create a new list item element
+        savedTasks.forEach(task => { // Loop through each saved task
+            const taskItem = createTaskItem(task.text, category, task.completed); // Create a new list item element
             tasksList.appendChild(taskItem); // Append the task item to the task list
         });
     });
@@ -250,6 +259,7 @@ function loadTasks() {
 }
 
 // Load tasks when the page loads and add event listeners for "Enter" key press and button clicks
+
 document.addEventListener("DOMContentLoaded", () => {
     loadTasks(); // Load tasks from local storage
 
