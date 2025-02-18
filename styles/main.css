@@ -122,7 +122,7 @@ body {
 #todo-container {
     position: relative;
     top: 400px; /* Positioned below the prayer times */
-    background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Gradient from top to bottom */
+    background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d); /* Gradient effect */
     padding: 20px;
     border-radius: 10px;
     color: white;
