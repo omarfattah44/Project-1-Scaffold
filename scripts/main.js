@@ -216,6 +216,10 @@ function createTaskItem(taskText, category, isCompleted) {
         taskTextElement.classList.add("completed"); // Mark as completed if needed
     }
 
+  // Create a container for the buttons
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("button-container");
+
     // Create Edit Button
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
@@ -227,12 +231,15 @@ function createTaskItem(taskText, category, isCompleted) {
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("delete-btn");
     deleteButton.onclick = function () { deleteTask(this, category); }; // Attach delete function
-
-    // Append elements to task item
-    taskItem.appendChild(taskTextElement);
-    taskItem.appendChild(editButton);
-    taskItem.appendChild(deleteButton);
-
+    
+    // Append buttons to container
+    buttonContainer.appendChild(editButton);
+    buttonContainer.appendChild(deleteButton);
+    
+     // Append elements to task item
+     taskItem.appendChild(taskTextElement);
+     taskItem.appendChild(buttonContainer);
+  
     return taskItem;
 }
 

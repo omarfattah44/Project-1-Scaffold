@@ -46,39 +46,39 @@
     
        <!--Islam To-do List--> 
        <div class="todo-category">
-            <h2>Islam</h2>
-            <input type="text" id="islam-task" placeholder="Enter a task..." />
-            <button class="add-task-btn" onclick="addTask('islam')">Add Task</button> <!-- Changed function name to be camelCase for consistency -->
+            <h2 class="todo-category-title">Islam</h2> <!-- Fixed class attribute positioning -->
+            <input type="text" id="islam-task" class="TaskInput" placeholder="Enter a task..." /> <!-- Fixed class attribute -->
+            <button class="add-task-btn" onclick="addTask('islam')">Add Task</button> 
             <ul id="islam-list"></ul> <!-- Corrected the id from 'islam-tasks' to 'islam-list' for consistency -->
         </div>
 <!-- Fitness To-Do List -->
     <div class="todo-category">
-        <h2>Fitness</h2>
-        <input type="text" id="fitness-task" placeholder="Enter a task..." />
-        <button class="add-task-btn" onclick="addTask('fitness')">Add Task</button> <!-- Changed function name to be camelCase for consistency -->
+        <h2 class="todo-category-title">Fitness</h2> <!-- Added class attribute for consistency -->
+        <input type="text" id="fitness-task" class="TaskInput" placeholder="Enter a task..." /> <!-- Updated class to TaskInput -->
+        <button class="add-task-btn" onclick="addTask('fitness')">Add Task</button> 
         <ul id="fitness-list"></ul>
     </div>
 
     <!-- Work/School To-Do List -->
     <div class="todo-category">
-        <h2>Work/School</h2>
-        <input type="text" id="work-task" placeholder="Enter a task..." />
+        <h2 class="todo-category-title">Work/School</h2> <!-- Fixed class attribute for consistency -->
+        <input type="text" id="work-task" class="TaskInput" placeholder="Enter a task..." /> <!-- Updated class to TaskInput -->
         <button class="add-task-btn" onclick="addTask('work')">Add Task</button>
         <ul id="work-list"></ul>
     </div>
 
     <!-- Home/Miscellaneous To-Do List -->
     <div class="todo-category">
-        <h2>Home/Miscellaneous</h2>
-        <input type="text" id="home-task" placeholder="Enter a task..." />
+        <h2 class="todo-category-title">Home/Miscellaneous</h2> <!-- Fixed class attribute for consistency -->
+        <input type="text" id="home-task" class="TaskInput" placeholder="Enter a task..." /> <!-- Updated class to TaskInput -->
         <button class="add-task-btn" onclick="addTask('home')">Add Task</button>
         <ul id="home-list"></ul>
     </div>
 
     <!-- Masjid To-Do List -->
     <div class="todo-category">
-        <h2>Masjid</h2>
-        <input type="text" id="masjid-task" placeholder="Enter a task..." />
+        <h2 class="todo-category-title">Masjid</h2> <!-- Added class attribute for consistency -->
+        <input type="text" id="masjid-task" class="TaskInput" placeholder="Enter a task..." /> <!-- Updated class to TaskInput -->
         <button class="add-task-btn" onclick="addTask('masjid')">Add Task</button>
         <ul id="masjid-list"></ul>
     </div>

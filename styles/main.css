@@ -52,7 +52,7 @@ body {
     margin: 0 auto; /* Positioned below the Quran header */
     margin-top: 500px; /* Adjust spacing */
     width: 100%; /* Adjust width for better spacing */
-    max-width: 1500px;
+    max-width: 1100px;
     margin-bottom: 100px;
     background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d); /* Gradient effect */
     padding: 20px;
@@ -97,7 +97,7 @@ body {
     justify-content: space-between; /* Even spacing */
     gap: 10px;
     flex-wrap: wrap; /* Allows wrapping if needed */
-    width: 100%;
+    width: 100%; /* Changed to 100% for responsiveness */
 }
 
 /*  Individual Prayer Times */
@@ -143,7 +143,6 @@ body {
     margin-top: 50px;
     padding: 20px;
     width: 90%; /* Makes sure it scales properly */
-    max-width: 2000px; /* Keeps layout balanced */
     background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d);
     color: white;
     box-shadow: 0px 0px 30px rgba(104, 219, 240, 0.945);
@@ -171,9 +170,19 @@ body {
     border-width: 2px;
     border-style: solid;
 }
+/* To-Do List Categories title */
+.todo-category-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    border: none;
+    
+}
 /* Hover Effects */
 .todo-category:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
     box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
 }
 
@@ -206,7 +215,7 @@ li {
     align-items: center;
     cursor: pointer;
 }
-.input {
+.TaskInput {
     width: 100%; /* Full width */
     padding: 10px; /* Padding */
     margin: 10px 0; /* Margin */
@@ -217,14 +226,17 @@ li {
     font-family: 'Poppins', sans-serif; /* Font family */
     transition: border-color 0.3s ease; /* Smooth transition */
 }
-
+.TaskInput:focus {
+    border-color: #66afe9;
+    outline: none;
+}
+/* Add Task Button */
 .add-task-btn {
     background-color: rgba(0, 128, 0, 0.603); /* Green background */
     border: none; /* Remove border */
-    color: white; /* White text */
+    color: black; /* White text */
     padding: 15px 32px; /* Padding */
     text-align: center; /* Center text */
-    text-decoration: none; /* Remove underline */
     display: inline-block; /* Inline-block display */
     font-size: .75em; /* Font size */
     font-weight: bold; /* Bold text */
@@ -232,25 +244,27 @@ li {
     cursor: pointer; /* Pointer cursor on hover */
     border-radius: 12px; /* Rounded corners */
 }
-/* Edit & Delete Buttons */
-.edit-btn {
-    background: #ff9800;
-    font-weight: bold;
-    display: inline-block;
-    justify-content: right;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: .75em;
+.button-container {
+    display: flex;
+    gap: 5px; /* Space between buttons */
 }
 
-.delete-btn {
-    background: #e53935;
-    font-weight: bold;
+.edit-btn, .delete-btn {
     padding: 5px 10px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
     font-size: .75em;
+    font-weight: bold;
+}
+
+.edit-btn {
+    background: #ff9800;
+}
+
+.delete-btn {
+    background: #e53935;
+    color: white;
 }
 
 
