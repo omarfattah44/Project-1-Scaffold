@@ -52,7 +52,8 @@ body {
     margin: 0 auto; /* Positioned below the Quran header */
     margin-top: 500px; /* Adjust spacing */
     width: 100%; /* Adjust width for better spacing */
-    max-width: 600px;
+    max-width: 1500px;
+    margin-bottom: 100px;
     background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d); /* Gradient effect */
     padding: 20px;
     border-radius: 15px;
@@ -68,7 +69,7 @@ body {
 
 /*  Hijri Date */
 #islamic-date {
-    font-size: 1em;
+    font-size: 2em;
     font-weight: bold;
     color: white;
     text-align: center;
@@ -77,11 +78,12 @@ body {
 
 /*  Countdown Timer */
 #countdown-container {
-    font-size: 1.2em;
+    font-size: 3.5em;
     color: white;
     background-color: rgba(2, 6, 63, 0.856);
     padding: 10px;
     border-radius: 10px;
+    box-shadow: greenyellow 0px 0px 10px;
     text-align: center;
     white-space: nowrap;
 }
@@ -98,7 +100,7 @@ body {
 
 /*  Individual Prayer Times */
 .prayer-time {
-    font-size: 1em;
+    font-size: 2em;
     padding: 5px 10px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
@@ -139,13 +141,14 @@ body {
     margin-top: 50px;
     padding: 20px;
     width: 90%; /* Makes sure it scales properly */
-    max-width: 1400px; /* Keeps layout balanced */
+    max-width: 2000px; /* Keeps layout balanced */
     background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d);
     color: white;
     box-shadow: 0px 0px 30px rgba(104, 219, 240, 0.945);
     border-radius: 15px;
     margin-left: auto;
     margin-right: auto;
+    border: 2px solid white;
 }
 
 /* To-Do List Categories */
@@ -155,7 +158,6 @@ body {
     border-radius: 10px;
     width: 100%; /* Fixed width so all fit side by side */
     min-height: 300px; /* Uniform height */
-    text-shadow: black 4px 4px 6px;
     box-shadow: 0px 4px 10px rgba(240, 239, 239, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
@@ -192,7 +194,6 @@ li {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
-    text-shadow: rgb(13, 14, 13) 0px 0px 0px;
     text-align: left;
     word-wrap: break-word;
     display: flex;
