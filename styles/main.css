@@ -65,6 +65,7 @@ body {
     justify-content: center;
     gap: 15px; /* Spacing between elements */
     box-shadow: 0px 0px 30px rgba(78, 252, 101, 0.692);
+    border: 4px solid white;
 }
 
 /*  Hijri Date */
@@ -81,11 +82,12 @@ body {
     font-size: 3.5em;
     color: white;
     background-color: rgba(2, 6, 63, 0.856);
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: greenyellow 0px 0px 10px;
+    box-shadow: rgba(248, 250, 245) 0px 0px 10px;
     text-align: center;
     white-space: nowrap;
+    margin-bottom: 25px;
 }
 
 /*  Prayer Times - Now in a Horizontal Layout */
@@ -148,7 +150,7 @@ body {
     border-radius: 15px;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid white;
+    border: 4px solid white;
 }
 
 /* To-Do List Categories */
@@ -163,6 +165,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
 }
 /* Hover Effects */
 .todo-category:hover {
@@ -171,13 +178,18 @@ body {
 }
 
 /* Different Shadows for Each Category */
-.todo-category:nth-child(1) { box-shadow: 0px 4px 10px rgba(78, 252, 101, 0.8); } /* Islam - Green */
-.todo-category:nth-child(2) { box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.8); } /* Fitness - Blue */
-.todo-category:nth-child(3) { box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.8); } /* Work/School - Orange */
-.todo-category:nth-child(4) { box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.8); } /* Home/Misc - Pink */
-.todo-category:nth-child(5) { box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.8); } /* Masjid - Yellow */
+.todo-category:nth-child(1) {background-color: lightgreen; box-shadow: 0px 4px 10px rgba(78, 252, 101, 0.8); } /* Masjid -  */
+.todo-category:nth-child(2) { background-color: lightblue; box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.8); } /* Islam -*/
+.todo-category:nth-child(3) { background-color: lightcoral; box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.8); } /* Fitness - */
+.todo-category:nth-child(4) { background-color: rgba(47, 255, 109, 0.712); box-shadow: 0px 4px 10px rgba(255, 105, 180, 0.8); } /* Work/School -  */
+.todo-category:nth-child(5) { background-color: lightyellow; box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.8); } /* Home/Misc - */
 
 
+.completed {
+    text-decoration: line-through;
+    color: red;
+    opacity: 0.5;
+}
 
 li {
     background: white;
@@ -192,11 +204,7 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-li.completed {
-    text-decoration: line-through;
-    color: red;
-    opacity: 0.5;
+    cursor: pointer;
 }
 /* Edit & Delete Buttons */
 .edit-btn {
@@ -205,6 +213,8 @@ li.completed {
     display: inline-block;
     justify-content: right;
     border-radius: 5px;
+    cursor: pointer;
+    font-size: .75em;
 }
 
 .delete-btn {
@@ -214,6 +224,7 @@ li.completed {
     cursor: pointer;
     border: none;
     border-radius: 5px;
+    font-size: .75em;
 }
 
 
