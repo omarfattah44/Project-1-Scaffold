@@ -38,21 +38,22 @@
     </div>
 
     <!-- To-Do List Section -->
-     <!--Islam To-do List-->
-    
+
+
+     
     <div id="todo-container">
-        <div class="todo-container-title">
-            <h2>Weekly To-Do Lists:</h2> <!-- Added title for to-do container -->
-        </div>
-        <div class="todo-category">
-            <h3>Islam</h3>
+            <h2 class="todo-container-title">Weekly To-Do List:</h2> <!-- Moved Inside Container -->
+    
+       <!--Islam To-do List--> 
+       <div class="todo-category">
+            <h2>Islam</h2>
             <input type="text" id="islam-task" placeholder="Enter a task..." />
             <button onclick="addTask('islam')">Add Task</button> <!-- Changed function name to be camelCase for consistency -->
             <ul id="islam-list"></ul> <!-- Corrected the id from 'islam-tasks' to 'islam-list' for consistency -->
         </div>
 <!-- Fitness To-Do List -->
     <div class="todo-category">
-        <h3>Fitness</h3>
+        <h2>Fitness</h2>
         <input type="text" id="fitness-task" placeholder="Enter a task..." />
         <button onclick="addTask('fitness')">Add Task</button>
         <ul id="fitness-list"></ul>
@@ -60,7 +61,7 @@
 
     <!-- Work/School To-Do List -->
     <div class="todo-category">
-        <h3>Work/School</h3>
+        <h2>Work/School</h2>
         <input type="text" id="work-task" placeholder="Enter a task..." />
         <button onclick="addTask('work')">Add Task</button>
         <ul id="work-list"></ul>
@@ -68,7 +69,7 @@
 
     <!-- Home/Miscellaneous To-Do List -->
     <div class="todo-category">
-        <h3>Home/Miscellaneous</h3>
+        <h2>Home/Miscellaneous</h2>
         <input type="text" id="home-task" placeholder="Enter a task..." />
         <button onclick="addTask('home')">Add Task</button>
         <ul id="home-list"></ul>
@@ -76,13 +77,12 @@
 
     <!-- Masjid To-Do List -->
     <div class="todo-category">
-        <h3>Masjid</h3>
+        <h2>Masjid</h2>
         <input type="text" id="masjid-task" placeholder="Enter a task..." />
         <button onclick="addTask('masjid')">Add Task</button>
         <ul id="masjid-list"></ul>
     </div>
 </div>
-    </div>
     <!-- Link to my JS file, important to be at the end of the body for performance -->
     <script src="scripts/main.js"></script>
 </body>
