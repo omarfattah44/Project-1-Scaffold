@@ -11,7 +11,7 @@
     color: white;
     text-align: center;
     text-shadow: 1px 1px 2px black;
-    font-size: .75em;
+    font-size: 1.2em;
     font-weight: bold;
     z-index: 1000; /* Ensures it stays above everything */
     display: flex;
@@ -34,14 +34,14 @@ body {
 
 /*  Welcome Message */
 #Welcome-Message {
-    top: 200px; /* Adjust to fit the header */
-    font-size: 4em;
+    top: 250px; /* Adjust to fit the header */
+    font-size: 5em;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
     color: white;
     text-shadow: 2px 2px 5px black;
     position: relative;
-    animation: fadeIn 5s ease;
+    animation: fadeIn 1s ease;
     box-shadow: rgba(43, 223, 247, 0.705);
    
 }
@@ -139,7 +139,7 @@ body {
 }
 /* Weekly To-Do List Title */
 .todo-container-title {
-    font-size: 2.5em;
+    font-size: 3.5em;
     font-weight: bold;
     text-align: center;
     text-shadow: 2px 2px 5px black;
@@ -157,7 +157,7 @@ body {
     gap: 20px; /* Even spacing between categories */
     margin-top: 50px;
     padding: 20px;
-    width: 90%; /* Makes sure it scales properly */
+    width: 95%; /* Makes sure it scales properly */
     background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d);
     color: white;
     box-shadow: 0px 0px 30px rgba(104, 219, 240, 0.945);
@@ -172,7 +172,7 @@ body {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     padding: 15px;
     border-radius: 10px;
-    width: 100%; /* Fixed width so all fit side by side */
+    width: 90%; /* Fixed width so all fit side by side */
     min-height: 300px; /* Uniform height */
     box-shadow: 0px 4px 10px rgba(240, 239, 239, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -187,7 +187,7 @@ body {
 }
 /* To-Do List Categories title */
 .todo-category-title {
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: bold;
     text-align: center;
     text-shadow: #021c4d 2px 2px 8px;
@@ -198,7 +198,7 @@ body {
 }
 /* Hover Effects */
 .todo-category:hover {
-    transform: scale(1.01);
+    transform: scale(1.09);
     box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
 }
 
@@ -254,7 +254,7 @@ li {
     padding: 15px 32px; /* Padding */
     text-align: center; /* Center text */
     display: inline-block; /* Inline-block display */
-    font-size: .75em; /* Font size */
+    font-size: 1em; /* Font size */
     font-weight: bold; /* Bold text */
     margin: 4px 2px; /* Margin */
     cursor: pointer; /* Pointer cursor on hover */
@@ -270,7 +270,7 @@ li {
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    font-size: .75em;
+    font-size: 1em;
     font-weight: bold;
 }
 
