@@ -45,6 +45,21 @@ body {
     box-shadow: rgba(43, 223, 247, 0.705);
    
 }
+/* Animation */
+@keyframes rotateIn {
+    from {
+        transform: rotate(-360deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+}
+
+#Welcome-Message {
+    animation: rotateIn 1s ease-in-out;
+}
 
 /*  Prayer Times Widget - Horizontal Layout */
 #prayer-times-container {
@@ -175,6 +190,7 @@ body {
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
+    text-shadow: #021c4d 2px 2px 8px;
     text-decoration: underline;
     margin-bottom: 10px;
     border: none;
@@ -232,7 +248,7 @@ li {
 }
 /* Add Task Button */
 .add-task-btn {
-    background-color: rgba(0, 128, 0, 0.603); /* Green background */
+    background-color: rgb(255, 251, 33); /* Green background */
     border: none; /* Remove border */
     color: black; /* White text */
     padding: 15px 32px; /* Padding */
