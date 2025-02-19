@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="styles/main.css">
  </head>
 
+<header> <h2 id="quran-verse"></h2>
+</header>
+
 <!-- This is the body of the document, where the content will go -->
 <body>
 
 <!--Quran Verse Container-->
-<header> <h2 id="quran-verse"></h2>
-</header>
+
     
     
     <div id="Welcome-Message"><h1>ٱلسَّلَامُ عَلَيْكُمْ</h1>
@@ -37,8 +39,11 @@
 
     <!-- To-Do List Section -->
      <!--Islam To-do List-->
+    
     <div id="todo-container">
-        <h2>Weekly To-Do List</h2>
+        <div class="todo-container-title">
+            <h2>Weekly To-Do Lists:</h2> <!-- Added title for to-do container -->
+        </div>
         <div class="todo-category">
             <h3>Islam</h3>
             <input type="text" id="islam-task" placeholder="Enter a task..." />

@@ -1,4 +1,4 @@
-/*  Quran Verse Header - Fixed at the Top */
+
 #quran-verse {
     position: absolute; /* Stays at the top */
     top: -5px; /* Adjust to fit the header */
@@ -7,7 +7,7 @@
     margin-right: auto;
     width: 100%;
     height: fit-content; /* Adjust height for a thinner header */
-    background: linear-gradient(to bottom, #1e3c72, #2a5298, #1e3c72); /* Middle gradient */
+    background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d); /* Middle gradient */
     padding: 15px 0;
     color: white;
     text-align: center;
@@ -26,7 +26,7 @@
 
 /*  Body - Prevent Overlapping */
 body {
-    background-color: #1c2d4b;
+    background-color: #dee6f5;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     text-align: center;
@@ -43,6 +43,7 @@ body {
     text-shadow: 1px 1px 24px black;
     position: relative;
     animation: fadeIn 5s ease;
+    box-shadow: rgba(43, 223, 247, 0.705);
    
 }
 
@@ -64,7 +65,7 @@ body {
     align-items: center;
     justify-content: space-around;
     gap: 15px; /* Spacing between elements */
-    box-shadow: 0px 0px 20px rgba(7, 173, 202, 0.3);
+    box-shadow: 0px 0px 30px rgba(104, 219, 240, 0.945);
 }
 
 /*  Hijri Date */
@@ -123,79 +124,107 @@ body {
 /* To do lists */
 /* To-Do List Section */
 #todo-container {
-    position: relative;
-    top: 400px; /* Positioned below the prayer times */
-    background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d); /* Gradient effect */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 400px;
     padding: 20px;
-    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(to bottom, #021c4d, #2a5298, #021c4d); /* Gradient effect */
     color: white;
+}
+.todo-container-title {
+    display: flex
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
     text-align: center;
-    width: 80%;
-    margin: 20px auto;
-    box-shadow: 0px 0px 20px rgba(7, 173, 202, 0.3);
+    text-shadow: 1px 1px 2px black;
+    margin-bottom: 20px;
 }
 
-/* Individual To-Do List Categories */
+/*  To-Do List Categories */
 .todo-category {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     padding: 15px;
-    border-radius: 8px;
-    margin: 15px 0;
+    border-radius: 10px;
+    width: 500px;
+    text-shadow: black 4px 4px 6px;
+    box-shadow: 0px 4px 10px rgba(240, 239, 239, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Input Field */
-.todo-category input {
-    width: 70%;
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-    font-size: 1em;
+.todo-category:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
 }
 
-/* Buttons */
-.todo-category button {
-    padding: 8px 12px;
-    border: none;
-    background: #ff9800;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 5px;
-}
-
-.todo-category button:hover {
-    background: #e68900;
-}
-
-/* Task List */
+/* 📝 Task List Items */
 ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
-/* Task List Items */
-ul li {
-    background: rgba(255, 255, 255, 0.2);
-    margin: 8px 0;
+li {
+    background: white;
+    color: black; 
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     padding: 10px;
+    margin: 5px 0;
     border-radius: 5px;
+    transition: all 0.3s ease;
+    text-shadow: rgb(13, 14, 13) 0px 0px 0px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+li.completed {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    opacity: 0.5;
+    background: rgba(0, 0, 0, 0.1);
+}
+li:hover {
+    cursor: pointer;
+}
+
+/*  Task Button */
+.task-buttons {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-/* Completed Task (Strikethrough Effect) */
-.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
-/* Delete Button */
-.delete-btn {
-    background: red;
+/*  Edit Button */
+.edit-btn {
+    background: #ff9800;
     border: none;
-    padding: 5px;
-    color: white;
+    padding: 5px 10px;
+    margin-left: 10px;
     cursor: pointer;
     border-radius: 5px;
 }
+
+.edit-btn:hover {
+    background: #ffb74d;
+}
+
+/* ❌ Delete Button */
+.delete-btn {
+    background: #e53935;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-btn:hover {
+    background: #ff5252;
+}
+
+
+
