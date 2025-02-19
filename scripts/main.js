@@ -235,7 +235,7 @@ function createTaskItem(taskText, category, isCompleted) {
     // Append buttons to container
     buttonContainer.appendChild(editButton);
     buttonContainer.appendChild(deleteButton);
-    
+
      // Append elements to task item
      taskItem.appendChild(taskTextElement);
      taskItem.appendChild(buttonContainer);
@@ -245,7 +245,7 @@ function createTaskItem(taskText, category, isCompleted) {
 
 // Function to edit a task
 function editTask(editButton, category) {
-    const taskItem = editButton.parentElement; // Get task item
+    const taskItem = editButton.parentElement.parentElement; // Get task item
     const taskTextElement = taskItem.querySelector("span"); // Get text element
     const oldText = taskTextElement.textContent.trim(); // Store original text
 
@@ -293,7 +293,7 @@ function toggleComplete(taskElement) {
 
 // Function to delete a task
 function deleteTask(taskElement, category) {
-    taskElement.parentElement.remove(); // Remove task
+    taskElement.parentElement.parentElement.remove(); // Remove task
     saveTasks(category); // Save tasks to local storage
 }
 
